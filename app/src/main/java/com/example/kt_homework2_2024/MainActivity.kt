@@ -17,6 +17,11 @@ class MainActivity : ComponentActivity() {
 		super.onCreate(savedInstanceState)
 		setContent {
 			val viewModel = ViewModelProvider(this)[DogViewModel::class]
+
+			/**
+			 * Я бы унес из mainActivity создание этих объектов сразу в DogsGrid.
+			 * Это не ошибка, скорее рекомендация
+			 */
 			val gridState = rememberLazyGridState()
 			Kt_homework2_2024Theme {
 				DogsGrid(viewModel, gridState)

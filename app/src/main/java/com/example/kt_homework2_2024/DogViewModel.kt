@@ -18,6 +18,15 @@ class DogViewModel(): ViewModel() {
 	private val repo = AppModule.provideRandomDogApiRepo(AppModule.provideRandomDogApi())
 
 	private val _urls = mutableStateListOf<String>()
+
+	/**
+	 * Тут ошибка - у urls такой же тип данных(мутабельный) как и
+	 * у _urls.
+	 *
+	 * Обычно делают 2 переменных для изменяемых данных для того, чтобы
+	 * одна была мутабельная только внутри VM, а вторая "торчала наружу"
+	 * из VM
+	 */
 	val urls = _urls
 
 	fun getDogPictureUrl() {

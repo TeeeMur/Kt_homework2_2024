@@ -21,6 +21,10 @@ fun DogsGrid(
 	gridState: LazyGridState
 ) {
 	val screenConfig = LocalConfiguration.current
+
+	/**
+	 * Нет remember для countOfColumns
+	 */
 	val countOfColumns =
 		(if (screenConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) Constants.INT_COUNT_OF_COLUMNS_LANDSCAPE
 		else Constants.INT_COUNT_OF_COLUMNS_PORTRAIT)
