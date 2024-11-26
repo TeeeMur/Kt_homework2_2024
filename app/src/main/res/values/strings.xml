@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kt_homework2_2024</string>
+    <string name="dog_image_description">Some dog…</string>
+    <string name="button_text">Click me!</string>
 </resources>

@@ -1,12 +1,11 @@
 package com.example.kt_homework2_2024.repo
 
-import com.example.kt_homework2_2024.model.DogWrapper
+import com.example.kt_homework2_2024.model.DogData
+
+val LIST_STRING_FORMATS: List<String> = listOf("jpg", "gif", "png")
 
 class RandomDogApiRepoImpl(
 	private val api: DogApi
-): RandomDogApiRepo {
-	override suspend fun getRandomDog(): DogWrapper {
-		return api.getRandomDog()
-	}
-
+){
+	suspend fun getRandomDog(): DogData = api.getRandomDog(LIST_STRING_FORMATS.joinToString(separator = ","))
 }
