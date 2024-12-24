@@ -30,22 +30,18 @@ class DogViewModel : ViewModel() {
 			_globalStateFlow.update { oldValue ->
 				oldValue.copy(urlsList = oldValue.urlsList + List(10) { UrlState.Loading })
 			}
-			val dogList = mutableListOf<UrlState>()
-			repeat(10) {
-				dogList.add(
-					try {
-						UrlState.Success(repo.getRandomDog())
-					} catch (e: IOException) {
-						UrlState.Error
-					} catch (e: HttpException) {
-						UrlState.Error
-					}
-				)
-			}
 			_globalStateFlow.update { oldValue ->
 				val resultList = oldValue.urlsList.toMutableList()
-				for (i in 0..9) {
-					resultList[resultList.lastIndex - i] = dogList[9 - i]
+				for (i in resultList.lastIndex - 9..resultList.lastIndex) {
+					resultList[i] = (
+						try {
+							UrlState.Success(repo.getRandomDog())
+						} catch (e: IOException) {
+							UrlState.Error
+						} catch (e: HttpException) {
+							UrlState.Error
+						}
+					)
 				}
 				oldValue.copy(urlsList = resultList.toList(), globalState = GlobalScreenState.Content)
 			}
